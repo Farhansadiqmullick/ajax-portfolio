@@ -262,3 +262,49 @@ Menu
     height: 150px;
   }
 }
+
+.ajax_item{
+  display: grid;
+  background-color: var(--clr-white);
+  grid-template-columns: 225px 1fr;
+  padding: 25px 40px;
+  gap: 0rem 0.1.25rem;
+  max-width: 45rem;
+  margin: 0 auto;
+  z-index: 999;
+
+}
+
+.ajax_item .portfolio-image .photo{
+  width:200px;
+  margin-top: 50px;
+}
+
+.portfolio_load{
+  position:fixed;
+  width:100%;
+  height: auto;
+  text-align: center;
+  margin: 0 auto;
+  top:30%
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.close_button{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  font-size: 30px;
+  right: calc(-49%);
+  top: -16px;
+  height: 10px;
+}
