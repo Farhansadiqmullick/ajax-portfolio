@@ -177,7 +177,6 @@ class AJAX_PORT
         $args = [
             'posts_per_page' => '1',
             'p' => intval($_POST['post_id']),
-            'exit' => $_POST['exit'],
             'post_type' => get_post_type($_POST['post_id']),
         ];
 
