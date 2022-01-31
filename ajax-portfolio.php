@@ -142,10 +142,24 @@ class AJAX_PORT
             </div>
             <!--Filter Buttons-->
             <div class="btn-container">
+
                 <button type="button" class="filter-btn" data-category="all">All</button>
-                <?php for ($i = 0; $i < count($portfolio); $i++) {
-                    echo '<button type="button" class="filter-btn" data-category="' . $portfolio[$i]['category'][0]->category_nicename . '">' . $portfolio[$i]['category'][0]->name . '</button>' . '</br>';
-                } ?>
+                <?php
+                $unique = [];
+                for ($i = 0; $i < count($portfolio); $i++) {
+                    $unique[] = explode(',', $portfolio[$i]['category'][0]->name);
+                }
+                $array_cat = array_map(function ($values) {
+                    foreach ($values as $value) {
+                        return $value;
+                    }
+                }, $unique);
+                 $items = array_unique($array_cat);
+                    foreach ($items as $item) {
+                        echo '<button type="button" class="filter-btn" data-category="' . strtolower($item) . '">' . $item . '</button>' . '</br>';
+                    }
+        
+                ?>
             </div>
             <div class="portfolio_load"></div>
             <!--menu items-->
@@ -184,19 +198,21 @@ class AJAX_PORT
         $query = new WP_Query($args);
         if ($query->have_posts()) :
             while ($query->have_posts()) : $query->the_post(); ?>
-                    <div class="ajax_item">
-                        <a class="portfolio-image" href="<?php echo get_the_permalink(get_the_ID()); ?>"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" class="photo" alt="Portfolio Image"></a>
-                        <div class="item-info">
-                            <header>
-                            <a class="portfolio-image" href="<?php echo get_the_permalink(get_the_ID());?>" data-id="<?php echo get_the_ID(); ?>"><h4><?php echo get_the_title(get_the_ID()); ?></h4></a>
-                                <h4 class="price"><?php echo get_post_meta(get_the_ID(), 'price')[0]; ?></h4>
-                            </header>
-                            <p class="item-text">
-                                <?php echo get_the_excerpt(get_the_ID()); ?>
-                            </p>
-                        </div>
+                <div class="ajax_item">
+                    <a class="portfolio-image" href="<?php echo get_the_permalink(get_the_ID()); ?>"><img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" class="photo" alt="Portfolio Image"></a>
+                    <div class="item-info">
+                        <header>
+                            <a class="portfolio-image" href="<?php echo get_the_permalink(get_the_ID()); ?>" data-id="<?php echo get_the_ID(); ?>">
+                                <h4><?php echo get_the_title(get_the_ID()); ?></h4>
+                            </a>
+                            <h4 class="price"><?php echo get_post_meta(get_the_ID(), 'price')[0]; ?></h4>
+                        </header>
+                        <p class="item-text">
+                            <?php echo get_the_excerpt(get_the_ID()); ?>
+                        </p>
                     </div>
-                
+                </div>
+
 <?php
             endwhile;
         endif;
