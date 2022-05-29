@@ -154,11 +154,11 @@ class AJAX_PORT
                         return $value;
                     }
                 }, $unique);
-                 $items = array_unique($array_cat);
-                    foreach ($items as $item) {
-                        echo '<button type="button" class="filter-btn" data-category="' . strtolower($item) . '">' . $item . '</button>' . '</br>';
-                    }
-        
+                $items = array_unique($array_cat);
+                foreach ($items as $item) {
+                    echo '<button type="button" class="filter-btn" data-category="' . strtolower($item) . '">' . $item . '</button>' . '</br>';
+                }
+
                 ?>
             </div>
             <div class="portfolio_load"></div>
@@ -211,7 +211,24 @@ class AJAX_PORT
                             <?php echo get_the_excerpt(get_the_ID()); ?>
                         </p>
                     </div>
+                    <div class="form-group">
+                        <form action="" method="post">
+                            <label for="width">Width</label>
+                            <span>
+                                <input type="text" name="width" id="width" value="Width">
+                            </span>
+                            <label for="height">Height</label>
+                            <span>
+                                <input type="text" name="height" id="height" value="height">
+                            </span>
+                            <input type="button" name="form-submit" id='form-submit' value="Submit">
+                            <div class="submit-value"></div>
+                        </form>
+                    </div>
                 </div>
+
+
+
 
 <?php
             endwhile;

@@ -308,3 +308,20 @@ Menu
   top: -16px;
   height: 10px;
 }
+
+#form-submit{
+  padding: 10px 12px;
+  background-color: #49a6e9;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  margin: 10px auto;
+
+}
+
+.form-group{
+  display: flex;
+  width: 100%;
+  text-align: center;
+  }
